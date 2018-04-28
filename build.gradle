@@ -3,7 +3,11 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
+<<<<<<< HEAD
         applicationId "com.example.android.employeesystem_zy"
+=======
+        applicationId "com.example.zy.myapplication"
+>>>>>>> ff92ee1b8314e7205532d5da2693260b6d668927
         minSdkVersion 14
         targetSdkVersion 27
         versionCode 1
@@ -16,6 +20,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+<<<<<<< HEAD
 }
 
 dependencies {
@@ -25,4 +30,29 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+=======
+    sourceSets {
+        main {
+            res.srcDirs =
+                    [
+
+                            'src/main/res/layouts/login',
+                            'src/main/res/layouts/main',
+                            'src/main/res/layout',
+                            'src/main/res'
+                    ]
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support:design:27.1.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.jakewharton:butterknife:8.8.1'
+>>>>>>> ff92ee1b8314e7205532d5da2693260b6d668927
 }
