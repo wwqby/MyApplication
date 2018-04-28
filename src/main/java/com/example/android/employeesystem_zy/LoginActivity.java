@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity implements IUserLoginView {
 
     @Override
     public String getPassword() {
-        return null;
+        return "123";
     }
 
     @Override
