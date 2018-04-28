@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.zy.myapplication.Main.TablayoutActivity;
 import com.example.zy.myapplication.R;
 
 public class LoginActivity extends AppCompatActivity {
