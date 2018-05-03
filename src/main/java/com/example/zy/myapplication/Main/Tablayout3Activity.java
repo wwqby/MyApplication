@@ -1,12 +1,17 @@
 package com.example.zy.myapplication.Main;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.zy.myapplication.Fragment.BlankFragment;
 import com.example.zy.myapplication.Fragment.BlankFragment2;
@@ -21,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class TablayoutActivity extends AppCompatActivity {
+public class Tablayout3Activity extends AppCompatActivity {
 
 
     @BindView(R.id.home_container)
@@ -31,7 +36,9 @@ public class TablayoutActivity extends AppCompatActivity {
     @BindView(R.id.vp_context)
     ViewPager vpContext;
     private Unbinder unbinder;
-
+    int[] tabResPressed=new int[]{R.drawable.ic_left,R.drawable.ic_stop,R.drawable.ic_right};
+    int[] tabRes=new int[]{R.drawable.ic_insmall,R.drawable.ic_location,R.drawable.ic_inbigger};
+    String[] tabTitle=new String[]{"tab1","tab2","tab3"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,17 +52,15 @@ public class TablayoutActivity extends AppCompatActivity {
      */
     private void initView() {
 
-        final int[] tabResPressed=new int[]{R.drawable.ic_left,R.drawable.ic_stop,R.drawable.ic_right};
-        final int[] tabRes=new int[]{R.drawable.ic_insmall,R.drawable.ic_location,R.drawable.ic_inbigger};
-        final String[] tabTitle=new String[]{"tab1","tab2","tab3"};
+
 
 //        给TablLayout添加标签
         for(int i=0;i<tabTitle.length;i++){
-            hostTabLayout.addTab(hostTabLayout.newTab().setText(tabTitle[i]).setIcon(getResources().getDrawable(tabRes[i])));
+            hostTabLayout.addTab(hostTabLayout.newTab().setCustomView(getTabView(this,i)));
         }
 //        设置默认选中第一个tab并改变图标
         hostTabLayout.getTabAt(0).select();
-        hostTabLayout.getTabAt(0).setIcon(tabResPressed[0]);
+        setIconViewSelected(0);
 
 
 //        设置FragmentList
@@ -65,7 +70,7 @@ public class TablayoutActivity extends AppCompatActivity {
         fragmentList.add(BlankFragment3.newInstance());
 
 //        设置适配器并装载
-       FragAdapter adapter=new FragAdapter(getSupportFragmentManager(),fragmentList);
+        FragAdapter adapter=new FragAdapter(getSupportFragmentManager(),fragmentList);
         vpContext.setAdapter(adapter);
 
         hostTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -75,8 +80,8 @@ public class TablayoutActivity extends AppCompatActivity {
                 vpContext.setCurrentItem(tab.getPosition());
 //                图标变为选中状态
                 for (int i=0;i<tabTitle.length;i++){
-                    if (tab.getText().equals(tabTitle[i])){
-                        tab.setIcon(tabResPressed[i]);
+                    if (i==tab.getPosition()){
+                        setIconViewSelected(i);
                     }
                 }
             }
@@ -85,8 +90,8 @@ public class TablayoutActivity extends AppCompatActivity {
             public void onTabUnselected(TabLayout.Tab tab) {
 //                图标变回未选中状态
                 for (int i=0;i<tabTitle.length;i++){
-                    if (tab.getText().equals(tabTitle[i])){
-                        tab.setIcon(tabRes[i]);
+                    if (i==tab.getPosition()){
+                        setIconView(tab,i);
                     }
                 }
 //                未选中tab的逻辑
@@ -115,6 +120,31 @@ public class TablayoutActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setIconView(TabLayout.Tab tab,int position) {
+        View mView=tab.getCustomView();
+        ImageView mImageView=(ImageView) mView.findViewById(R.id.iv_icon);
+        TextView mtextView=(TextView)mView.findViewById(R.id.tv_title);
+        mImageView.setImageResource(tabRes[position]);
+        mtextView.setTextColor(getResources().getColor(android.R.color.darker_gray));
+    }
+
+    private void setIconViewSelected(int position) {
+        View mView=hostTabLayout.getTabAt(position).getCustomView();
+        ImageView mImageView=(ImageView) mView.findViewById(R.id.iv_icon);
+        TextView mtextView=(TextView)mView.findViewById(R.id.tv_title);
+        mImageView.setImageResource(tabResPressed[position]);
+        mtextView.setTextColor(getResources().getColor(android.R.color.black));
+    }
+
+    private View getTabView(Context context, int position) {
+        View view= LayoutInflater.from(context).inflate(R.layout.icon_view,null);
+        ImageView imageView=(ImageView) view.findViewById(R.id.iv_icon);
+        TextView textView=(TextView)view.findViewById(R.id.tv_title);
+        imageView.setImageResource(tabRes[position]);
+        textView.setText(tabTitle[position]);
+        return view;
     }
 
 

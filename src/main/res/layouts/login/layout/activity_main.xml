@@ -15,5 +15,10 @@
         android:text="JumpTo2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/b_jump3"
+        android:text="JumpTo3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
