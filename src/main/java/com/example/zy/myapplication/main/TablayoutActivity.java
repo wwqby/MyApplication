@@ -1,4 +1,4 @@
-package com.example.zy.myapplication.Main;
+package com.example.zy.myapplication.main;
 
 
 import android.os.Bundle;
@@ -8,9 +8,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
 
-import com.example.zy.myapplication.Fragment.BlankFragment;
-import com.example.zy.myapplication.Fragment.BlankFragment2;
-import com.example.zy.myapplication.Fragment.BlankFragment3;
+import com.example.zy.myapplication.fragment.BlankFragment;
+import com.example.zy.myapplication.fragment.BlankFragment2;
+import com.example.zy.myapplication.fragment.BlankFragment3;
 import com.example.zy.myapplication.R;
 import com.example.zy.myapplication.Utils.FragAdapter;
 

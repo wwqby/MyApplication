@@ -1,4 +1,4 @@
-package com.example.zy.myapplication.Login;
+package com.example.zy.myapplication.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,9 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.zy.myapplication.Main.Tablayout2Activity;
-import com.example.zy.myapplication.Main.Tablayout3Activity;
-import com.example.zy.myapplication.Main.TablayoutActivity;
+import com.example.zy.myapplication.main.Tablayout2Activity;
+import com.example.zy.myapplication.main.Tablayout3Activity;
+import com.example.zy.myapplication.main.TablayoutActivity;
 import com.example.zy.myapplication.R;
 
 import butterknife.BindView;

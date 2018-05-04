@@ -1,4 +1,4 @@
-package com.example.zy.myapplication.Fragment;
+package com.example.zy.myapplication.fragment;
 
 
 import android.os.Bundle;
@@ -11,10 +11,10 @@ import com.example.zy.myapplication.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link BlankFragment#newInstance} factory method to
+ * Use the {@link BlankFragment3#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BlankFragment extends Fragment {
+public class BlankFragment3 extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -25,7 +25,7 @@ public class BlankFragment extends Fragment {
     private String mParam2;
 
 
-    public BlankFragment() {
+    public BlankFragment3() {
         // Required empty public constructor
     }
 
@@ -33,11 +33,11 @@ public class BlankFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment BlankFragment.
+     * @return A new instance of fragment BlankFragment3.
      */
     // TODO: Rename and change types and number of parameters
-    public static BlankFragment newInstance() {
-        BlankFragment fragment = new BlankFragment();
+    public static BlankFragment3 newInstance() {
+        BlankFragment3 fragment = new BlankFragment3();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, "1");
         args.putString(ARG_PARAM2, "2");
@@ -58,7 +58,7 @@ public class BlankFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_blank, container, false);
+        return inflater.inflate(R.layout.fragment_blank_fragment3, container, false);
     }
 
 }
