@@ -59,6 +59,7 @@ public class Tablayout3Activity extends AppCompatActivity {
         final Toast mToast=Toast.makeText(this,"",Toast.LENGTH_SHORT);
         mToast.setGravity(Gravity.CENTER,0,0);
 
+//        ToolBar
 //        set logo
         tbBar.setLogo(R.drawable.googleg_standard_color_18);
 //        set title
