@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.zy.myapplication.R;
 import com.example.zy.myapplication.Utils.RecycleViewAdapter;
@@ -17,10 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
-import static android.content.ContentValues.TAG;
 
 
 /**
@@ -35,7 +33,7 @@ public class BlankFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     @BindView(R.id.rv_pictures)
     RecyclerView rvPictures;
-    Unbinder unbinder;
+
 
 
     // TODO: Rename and change types of parameters
@@ -70,21 +68,6 @@ public class BlankFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        rvPictures=(RecyclerView)getView().findViewById(R.id.rv_pictures);
-
-        Log.d(TAG, "onCreate: 1");
-        List<Integer> datas=new ArrayList<Integer>();
-        datas.add(new Integer(R.drawable.ic_back_1));
-        datas.add(R.drawable.ic_back_2);
-        datas.add(R.drawable.ic_back_3);
-        datas.add(R.drawable.ic_back_4);
-        datas.add(R.drawable.ic_back_5);
-        datas.add(R.drawable.ic_back_6);
-
-        LinearLayoutManager linear = new LinearLayoutManager(this.getContext());
-        linear.setOrientation(LinearLayoutManager.HORIZONTAL);
-        rvPictures.setLayoutManager(linear);
-        rvPictures.setAdapter(new RecycleViewAdapter(this.getContext(),datas));
 
     }
 
@@ -93,13 +76,37 @@ public class BlankFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_blank, container, false);
-        Log.d(TAG, "onCreateView: 2");
+        rvPictures=(RecyclerView)view.findViewById(R.id.rv_pictures);
+        List<Integer> datas=new ArrayList<>();
+        datas.add(R.drawable.ic_back_1);
+        datas.add(R.drawable.ic_back_2);
+        datas.add(R.drawable.ic_back_3);
+        datas.add(R.drawable.ic_back_4);
+        datas.add(R.drawable.ic_back_5);
+        datas.add(R.drawable.ic_back_6);
+
+        LinearLayoutManager linear = new LinearLayoutManager(this.getContext());
+        linear.setOrientation(LinearLayoutManager.VERTICAL);
+        rvPictures.setLayoutManager(linear);
+        RecycleViewAdapter adapter=new RecycleViewAdapter(this.getContext(),datas);
+        adapter.setOnItemClickListener(new RecycleViewAdapter.OnItemClickListener() {
+            @Override
+            public void ItemClick(View view, int position) {
+                Toast.makeText(getActivity(), "You click picture "+position, Toast.LENGTH_SHORT).show();
+            }
+        });
+        rvPictures.setAdapter(adapter);
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
     }
 }

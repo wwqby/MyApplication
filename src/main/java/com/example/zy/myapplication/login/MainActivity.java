@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.zy.myapplication.main.SecondActivity;
 import com.example.zy.myapplication.main.Tablayout2Activity;
 import com.example.zy.myapplication.main.Tablayout3Activity;
 import com.example.zy.myapplication.main.TablayoutActivity;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     Button bJump2;
     @BindView(R.id.b_jump3)
     Button bJump3;
+    @BindView(R.id.b_jump4)
+    Button bJump4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.b_jump1, R.id.b_jump2,R.id.b_jump3})
+    @OnClick({R.id.b_jump1, R.id.b_jump2,R.id.b_jump3,R.id.b_jump4})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.b_jump1:
@@ -46,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.b_jump3:
                 Intent intent3 = new Intent(this, Tablayout3Activity.class);
                 startActivity(intent3);
+                break;
+            case R.id.b_jump4:
+                Intent intent4 = new Intent(this, SecondActivity.class);
+                startActivity(intent4);
                 break;
         }
     }

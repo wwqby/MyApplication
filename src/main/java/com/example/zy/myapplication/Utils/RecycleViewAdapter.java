@@ -19,7 +19,7 @@ import java.util.List;
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyHolder>{
     private Context mContext;
     private List<Integer> datas;
-    private AdapterView.OnItemClickListener mOnItemClickListener;
+    private OnItemClickListener mOnItemClickListener;
 
     public RecycleViewAdapter(Context mContext, List<Integer> datas) {
         this.mContext = mContext;
@@ -27,6 +27,13 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     }
 
 
+    public interface OnItemClickListener{
+        void ItemClick(View view,int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener itemClickListener){
+        this.mOnItemClickListener=itemClickListener;
+    }
     @NonNull
     @Override
     public RecycleViewAdapter.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -36,9 +43,17 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecycleViewAdapter.MyHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecycleViewAdapter.MyHolder holder, final int position) {
 
-        holder.mImageview.setImageResource(datas.get(position));
+        holder.mImageview.setImageResource(datas.get(position).intValue());
+        if (mOnItemClickListener!=null){
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnItemClickListener.ItemClick(v,position);
+                }
+            });
+        }
     }
 
     @Override
